@@ -1,0 +1,109 @@
+// --------------reset---------------
+@import "reset.scss";
+//
+body {
+    height: 100%;
+    line-height: 1;
+    font-size: 16px;
+    background: #FAFAFA;
+    color: #252B42;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-weight: 600;
+}
+
+.container {
+    max-width: 500px;
+    margin: -15px auto;
+    padding: 0px 15px;
+    box-sizing: content-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.input {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    border: 1px solid #a0a0a0;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 20px;
+    input {
+        width: 100%;
+        font-weight: 600;
+        font-size: 18px;
+    }
+}
+
+.btn {
+    max-width: 100%;
+    margin: 0 10px;
+    padding: 5px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 18px;
+    background-color: #e9e9e9;
+}
+
+.counter {
+    min-height: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    &__item {
+        display: flex;
+        flex: 1 1 25%;
+        justify-content: center;
+    }
+    &__all-span {}
+    &__checked-span {}
+    &__unchecked-span {}
+}
+
+.btn-clear {
+    min-width: 80px;
+    padding: 5px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 18px;
+    color: #fff;
+    background-color: #e48342;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    &__item {
+        height: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid #dbdbdb;
+        cursor: pointer;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    &__item-text {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        flex: 1 1 90%;
+        padding: 0 5px;
+        color: #797979;
+    }
+    &__item-text_through {
+        text-decoration: red 2px line-through;
+    }
+    &__item-delete {
+        height: 100%;
+        font-size: 22px;
+        display: flex;
+        flex: 1 1 10%;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+}
