@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.min.css" />
+    <title>TODO</title>
+</head>
+
+<body>
+    <header class="header"></header>
+
+    <main class="page">
+
+        <div class="container tasks">
+
+            <div class="tasks__input input"><input type="text" maxlength="50" placeholder="input task">
+            </div>
+
+            <div class="tasks__counter counter">
+                <button class="allCounter counter__item  btn">all: 
+                    <span class="counter__all-span">0</span>
+                </button>
+                <button class="counter__item checkedCounter btn">checked: 
+                    <span class="counter__checked-span">0</span>
+                </button>
+                <button class="counter__item uncheckedCounter btn">unchecked: 
+                    <span class="counter__unchecked-span">0</span>
+                </button>
+                <button class="counter__item clear btn-clear btn">clear
+                </button>
+            </div>
+
+            <ul class="tasks__list list">
+            </ul>
+
+        </div>
+
+    </main>
+
+    <footer class="footer"></footer>
+    <script src="js/app.min.js"></script>
+
+</html>
