@@ -7,15 +7,11 @@ const input = document.querySelector('.tasks__input'),
     uncheckedTasks = document.querySelector('.counter__unchecked-span'),
     clearButton = document.querySelector('.btn-clear');
 
-
 let state = [];
-
 let checkedCounter = 0;
 let uncheckedCounter = 0;
 let allCounter = 0;
 
-
-// input function
 input.addEventListener('keyup', (event) => {
     event.preventDefault();
     if (event.keyCode === 13) {
@@ -29,21 +25,17 @@ input.addEventListener('keyup', (event) => {
     }
 })
 
-// добавление таска в массив
 function addTaskToState(title) {
     state.push({ id: generateId(), title: title, checked: false })
     allCounter = state.length;
 }
 
-// генерация id
 let currentId = 1;
 
 function generateId() {
     return currentId++;
 }
 
-
-// изменение счетчиков текущих тасков
 function changeStatus() {
     checkedCounter = 0;
     uncheckedCounter = 0;
@@ -51,11 +43,10 @@ function changeStatus() {
         task.checked ? checkedCounter++ : uncheckedCounter++)
 }
 
-
-// обовление списка тасков
-function renderTasks(state) {
+function renderTasks(arr) {
     container.innerHTML = '';
-    state.forEach(task => {
+    arr.sort((a, b) => b.id - a.id);
+    arr.forEach(task => {
         container.innerHTML +=
             `
            <div class="list__item ${task.checked ? 'checked' : 'unchecked'}" data-id="${task.id}">
@@ -67,7 +58,6 @@ function renderTasks(state) {
     checkedTasks.innerHTML = checkedCounter;
     uncheckedTasks.innerHTML = uncheckedCounter;
     allTasks.innerHTML = allCounter;
-
     rerenderListeners();
 }
 
@@ -76,9 +66,7 @@ function rerenderListeners() {
     let listItems = document.querySelectorAll('.list__item');
     listItems.forEach(listItem => {
         listItem.addEventListener('click', function(event) {
-
             let targetItem = event.target;
-
             if (targetItem.closest('li')) {
                 let taskId = listItem.getAttribute('data-id');
                 let newTask = {
@@ -97,13 +85,11 @@ function rerenderListeners() {
                     checkedCounter--;
                     uncheckedCounter++;
                 }
-
-
                 checkedTasks.innerHTML = checkedCounter;
                 uncheckedTasks.innerHTML = uncheckedCounter;
             }
 
-            // удаление таска
+
             if (targetItem.closest('.list__item-delete')) {
                 let deleteTaskId = listItem.getAttribute('data-id');
                 if (listItem.classList.contains('list__item-text_through')) { checkedCounter-- } else {
@@ -130,9 +116,6 @@ function throughText() {
     })
 }
 
-
-
-
 const buttonsField = document.querySelector('.counter')
 buttonsField.addEventListener('click', function(event) {
     let target = event.target;
@@ -146,7 +129,6 @@ buttonsField.addEventListener('click', function(event) {
         let checkedState = state.filter(item => {
             return item.checked == true;
         })
-
         renderTasks(checkedState);
         throughText();
     }
@@ -166,7 +148,6 @@ buttonsField.addEventListener('click', function(event) {
         renderTasks(state);
     }
 })
-
 
 changeStatus();
 renderTasks(state);
