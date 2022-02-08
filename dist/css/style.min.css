@@ -94,30 +94,31 @@ body {
   height: 100%;
   line-height: 1;
   font-size: 16px;
-  background: #FAFAFA;
   color: #252B42;
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   font-weight: 600;
-  background: #c6ffdd;
   background: linear-gradient(to right, #f7ff84, #abfb86, #45d3f7);
 }
 
 .container {
-  max-width: 500px;
-  margin: -15px auto;
-  padding: 0px 15px;
+  max-width: 600px;
+  margin: 0 auto;
   box-sizing: content-box;
   display: flex;
   flex-direction: column;
+}
+
+.tasks {
+  margin-top: 30px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .input {
   height: 40px;
   display: flex;
   justify-content: center;
-  margin-top: 50px;
-  width: 100%;
-  margin-bottom: 20px;
+  margin: 30px auto;
+  width: 90%;
 }
 .input input {
   border: 1px solid #a0a0a0;
@@ -150,6 +151,9 @@ body {
   flex: 1 1 25%;
   justify-content: center;
 }
+.counter__item:hover {
+  background-color: #e9cbf7;
+}
 .btn-clear {
   min-width: 80px;
   padding: 5px;
@@ -158,6 +162,9 @@ body {
   font-size: 18px;
   color: #fff;
   background-color: #e48342;
+}
+.btn-clear:hover {
+  background-color: #f7c7a8;
 }
 
 .list {
@@ -182,7 +189,7 @@ body {
   display: flex;
   align-items: center;
   flex: 1 1 90%;
-  padding: 0 5px;
+  padding: 0 10px;
   color: #000;
 }
 .list__item-text_through {
