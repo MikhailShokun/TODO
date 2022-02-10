@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+@@include('html/head.html',{ "title":"TODO" })
+
+<body>
+    @@include('html/header.html',{})
+
+    <main class="page">
+
+        <div class="container tasks">
+
+            <div class="tasks__input input"><input type="text" maxlength="50" placeholder="input task">
+            </div>
+
+            <div class="tasks__counter counter">
+                <button class="allCounter counter__item  btn">all:&thinsp;
+                    <span class="counter__all-span"></span>
+                </button>
+                <button class="counter__item checkedCounter btn">checked:&thinsp;
+                    <span class="counter__checked-span"> </span>
+                </button>
+                <button class="counter__item uncheckedCounter btn">unchecked:&thinsp;
+                    <span class="counter__unchecked-span"></span>
+                </button>
+                <button class="counter__item clear btn-clear btn">clear task list
+                </button>
+            </div>
+
+            <ul class="tasks__list list">
+            </ul>
+
+        </div>
+
+    </main>
+
+    @@include('html/footer.html',{})
+    <script src="js/app.min.js"></script>
+
+</html>
