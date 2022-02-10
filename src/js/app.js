@@ -12,10 +12,18 @@ let checkedCounter = 0;
 let uncheckedCounter = 0;
 let allCounter = 0;
 
+
+
+if (localStorage.getItem('state') != undefined) {
+    state = JSON.parse(localStorage.getItem('state'));
+    renderTasks(state);
+    allCounter = state.length;
+}
+
 input.addEventListener('keyup', (event) => {
     event.preventDefault();
     if (event.keyCode === 13) {
-        if (event.target.value != '') {
+        if (event.target.value.trim()) {
             addTaskToState(event.target.value.trim());
             changeStatus();
             renderTasks(state);
@@ -25,27 +33,32 @@ input.addEventListener('keyup', (event) => {
     }
 })
 
+function setState() {
+    localStorage.setItem('state',
+        JSON.stringify(state));
+}
+
 function addTaskToState(title) {
-    state.push({ id: generateId(), title: title, checked: false })
+    state.push({ id: generateId(), title: title, checked: false });
+    setState();
     allCounter = state.length;
 }
 
-let currentId = 1;
-
 function generateId() {
-    return currentId++;
+    return (new Date()).getTime();
 }
 
 function changeStatus() {
     checkedCounter = 0;
     uncheckedCounter = 0;
     state.forEach(task =>
-        task.checked ? checkedCounter++ : uncheckedCounter++)
+        task.checked ? checkedCounter++ : uncheckedCounter++);
+    setState()
 }
 
 function renderTasks(arr) {
     container.innerHTML = '';
-    arr.sort((a, b) => b.id - a.id);
+    arr.sort((b, a) => a.id - b.id);
     arr.forEach(task => {
         container.innerHTML +=
             `
@@ -55,6 +68,7 @@ function renderTasks(arr) {
            </div>
             `
     })
+    throughText();
     checkedTasks.innerHTML = checkedCounter;
     uncheckedTasks.innerHTML = uncheckedCounter;
     allTasks.innerHTML = allCounter;
@@ -75,6 +89,7 @@ function rerenderListeners() {
                 }
                 state = state.filter(task => task.id != taskId);
                 state = [...state, newTask];
+                setState();
 
                 if (newTask.checked) {
                     listItem.classList.add('list__item-text_through');
@@ -98,6 +113,7 @@ function rerenderListeners() {
                 listItem.remove();
                 state = state.filter(task => +task.id != +deleteTaskId);
                 allCounter = state.length;
+                setState();
 
                 checkedTasks.innerHTML = checkedCounter;
                 uncheckedTasks.innerHTML = uncheckedCounter;
@@ -116,13 +132,15 @@ function throughText() {
     })
 }
 
+
 const buttonsField = document.querySelector('.counter')
 buttonsField.addEventListener('click', function(event) {
     let target = event.target;
 
     if (target.closest('.allCounter')) {
         renderTasks(state);
-        throughText()
+        throughText();
+        setState()
     }
 
     if (target.closest('.checkedCounter')) {
@@ -130,7 +148,7 @@ buttonsField.addEventListener('click', function(event) {
             return item.checked == true;
         })
         renderTasks(checkedState);
-        throughText();
+        setState();
     }
 
     if (target.closest('.uncheckedCounter')) {
@@ -138,6 +156,7 @@ buttonsField.addEventListener('click', function(event) {
             return item.checked == false;
         })
         renderTasks(uncheckedState);
+        setState()
     }
 
     if (target.closest('.clear')) {
@@ -146,8 +165,10 @@ buttonsField.addEventListener('click', function(event) {
         checkedCounter = 0;
         uncheckedCounter = 0;
         renderTasks(state);
+        setState();
     }
-})
+});
+
 
 changeStatus();
 renderTasks(state);
