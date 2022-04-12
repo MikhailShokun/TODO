@@ -1,3 +1,2 @@
-Github PAGE:
-
+GitHub Page:
 https://mikhailshokun.github.io/TODO/
